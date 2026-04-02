@@ -6,7 +6,13 @@
  *   GET /api/blogs/{slug}   → single post
  *
  * Set BACKEND_URL in .env.local (default: http://localhost:8000)
+ *
+ * Uses React cache() to deduplicate identical requests within a single
+ * server render (e.g. generateMetadata + page component both call getBlogPost).
+ * ISR revalidates cached pages every 60 seconds.
  */
+
+import { cache } from "react";
 
 export type BlogPost = {
   title: string;
@@ -20,10 +26,10 @@ export type BlogPost = {
 
 const BACKEND_URL = process.env.BACKEND_URL ?? "http://localhost:8000";
 
-export async function getBlogPosts(): Promise<BlogPost[]> {
+export const getBlogPosts = cache(async (): Promise<BlogPost[]> => {
   try {
     const res = await fetch(`${BACKEND_URL}/api/blogs`, {
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -36,12 +42,12 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
     console.error("Could not reach backend:", err);
     return [];
   }
-}
+});
 
-export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+export const getBlogPost = cache(async (slug: string): Promise<BlogPost | null> => {
   try {
     const res = await fetch(`${BACKEND_URL}/api/blogs/${slug}`, {
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (res.status === 404) return null;
@@ -56,4 +62,4 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     console.error("Could not reach backend:", err);
     return null;
   }
-}
+});
