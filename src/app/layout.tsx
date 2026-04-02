@@ -3,6 +3,7 @@ import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ConsultationProvider from "@/components/ConsultationProvider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,9 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${instrumentSerif.variable} antialiased`}>
       <body className="min-h-screen flex flex-col bg-dark-bg text-dark-text antialiased">
-        <Navbar />
-        <main className="flex-1 overflow-x-hidden">{children}</main>
-        <Footer />
+        <ConsultationProvider>
+          <Navbar />
+          <main className="flex-1 overflow-x-hidden">{children}</main>
+          <Footer />
+        </ConsultationProvider>
       </body>
     </html>
   );

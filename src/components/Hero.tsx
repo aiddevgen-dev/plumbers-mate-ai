@@ -2,8 +2,11 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useConsultation } from "./ConsultationProvider";
 
 export default function Hero() {
+  const openConsultation = useConsultation();
+
   return (
     <section
       className="relative min-h-screen flex items-center justify-center pt-24 pb-12 sm:pt-20 sm:pb-16 overflow-hidden"
@@ -70,12 +73,12 @@ export default function Hero() {
           >
             Watch 60-second Video
           </a>
-          <a
-            href="#book"
+          <button
+            onClick={openConsultation}
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-300 text-sm sm:text-base"
           >
             Schedule a Consultation
-          </a>
+          </button>
         </motion.div>
       </div>
     </section>

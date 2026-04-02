@@ -40,9 +40,9 @@ export default async function BlogPage() {
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-3">
-            Latest News{" "}
-            <em className="heading-italic font-light">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-3">
+            <span className="gradient-text">Latest News</span>{" "}
+            <em className="heading-italic font-light gradient-text">
               Articles
             </em>
           </h1>

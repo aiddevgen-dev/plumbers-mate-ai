@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useConsultation } from "./ConsultationProvider";
 
 const navLinks = [
   { href: "#how-it-works", label: "How it works" },
@@ -15,6 +16,7 @@ const navLinks = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const openConsultation = useConsultation();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
@@ -43,12 +45,12 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
-            <a
-              href="#book"
+            <button
+              onClick={openConsultation}
               className="px-5 py-2 lg:px-6 lg:py-2.5 bg-primary/10 border border-primary/30 text-primary text-sm font-semibold rounded-full hover:bg-primary/20 hover:border-primary/50 transition-all duration-200"
             >
               Book Consultation
-            </a>
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -86,13 +88,12 @@ export default function Navbar() {
                 </a>
               ))}
               <div className="pt-2 sm:pt-3">
-                <a
-                  href="#book"
-                  onClick={() => setIsOpen(false)}
-                  className="block text-center px-5 py-2.5 sm:py-3 bg-primary/10 border border-primary/30 text-primary text-sm font-semibold rounded-full hover:bg-primary/20"
+                <button
+                  onClick={() => { setIsOpen(false); openConsultation(); }}
+                  className="block w-full text-center px-5 py-2.5 sm:py-3 bg-primary/10 border border-primary/30 text-primary text-sm font-semibold rounded-full hover:bg-primary/20"
                 >
                   Book Consultation
-                </a>
+                </button>
               </div>
             </div>
           </motion.div>
