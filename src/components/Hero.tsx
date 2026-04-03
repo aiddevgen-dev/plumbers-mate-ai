@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useConsultation } from "./ConsultationProvider";
 
 export default function Hero() {
@@ -67,12 +68,12 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0"
         >
-          <a
-            href="#demo"
+          <Link
+            href="/free-offer"
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 bg-primary text-dark-bg font-semibold rounded-full hover:bg-primary-light hover:shadow-[0_0_30px_rgba(237,190,76,0.3)] transition-all duration-300 text-sm sm:text-base"
           >
             Watch 60-second Video
-          </a>
+          </Link>
           <button
             onClick={openConsultation}
             className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 border border-white/20 text-white font-semibold rounded-full hover:bg-white/5 hover:border-white/40 transition-all duration-300 text-sm sm:text-base"
