@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ConsultationProvider from "@/components/ConsultationProvider";
+import ChatWidget from "@/components/ChatWidget";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -35,6 +36,7 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1 overflow-x-hidden">{children}</main>
           <Footer />
+          <ChatWidget />
         </ConsultationProvider>
       </body>
     </html>
