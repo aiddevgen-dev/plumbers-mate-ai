@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 
 export default function ChatWidget() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -18,9 +18,9 @@ export default function ChatWidget() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {isOpen && (
-        <div className="mb-4 w-[380px] h-[600px] rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+        <div className="mb-4 w-[380px] h-[600px] rounded-2xl overflow-hidden">
           <iframe
-            src="https://plumbers-widget.vercel.app"
+            src="https://plumberswidget.raspy-sound-96d1.workers.dev/"
             className="w-full h-full border-0"
             allow="microphone"
             title="Plumbers AI Widget"
